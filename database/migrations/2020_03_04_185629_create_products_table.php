@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('price');
 
-            $table->foreign('category_name')->references('name')->on('categories')->onDelete('cascade');
+            $table->foreign('category_name')->references('name')->on('categories')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }
