@@ -8,6 +8,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Styles -->
     <style>
@@ -64,36 +65,36 @@
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
+<div class="flex-center position-re">
 
     <div class="content">
         <div class="title m-b-md">
-            Laravel
+            Products
         </div>
-
-        <div class="links">
-            <a href="https://laravel.com/docs">Docs</a>
-            <a href="https://laracasts.com">Laracasts</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://blog.laravel.com">Blog</a>
-            <a href="https://nova.laravel.com">Nova</a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://vapor.laravel.com">Vapor</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
+        <div class="links" style="padding-bottom: 60px ">
+            <a class="btn btn-light" href="{{ route('product.create') }}" role="button">New product</a>
         </div>
+        <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+                @foreach($products as $product)
+                    <tr>
+                        <td>
+                            <h4>{{ $product->name }}</h4>
+                            <h5>{{ $product->category_name }}</h5>
+                            <h6>{{ $product->price }}</h6>
+                            <a class="btn btn-primary" href="{{ route('product.edit', $product) }}" role="button">edit product</a>
+                            <form method="post" action={{ route('product.destroy', $product) }}>
+                                @csrf
+                                <input type="submit" class="btn btn-danger" role="button" value="Delete product">
+                                {{ method_field('DELETE') }}
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
 </body>

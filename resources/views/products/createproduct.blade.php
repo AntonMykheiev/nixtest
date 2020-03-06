@@ -69,21 +69,25 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Edit category
+            New product
         </div>
-        <form method="post" action="{{ route('category.update', $category) }}">
+        <form method="post" action="{{ route('product.store') }}">
             @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Name:</strong>
-                        <input type="text" name="name" class="form-control" value={{$category->name}}>
-                        {{ method_field('PUT') }}
+                        <input type="text" name="name" class="form-control" placeholder="Name">
+                        <input type="text" name="price" class="form-control" placeholder="Price">
+                        <select  name="category_name">
+                            @foreach($categories as $category)
+                            <option> {{ $category->name }}</option>
+                                @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a class="btn btn-danger" href={{ route('category.index') }}  role="button">Cancel</a>
                 </div>
             </div>
         </form>
