@@ -17,11 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('category_name');
-            $table->bigInteger('product_id')->unsigned();
+            $table->string('product_name');
             $table->integer('quantity');
 
             $table->foreign('category_name')->references('name')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('product_name')->references('name')->on('products')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

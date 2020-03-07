@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     public $timestamps = false;
+    public $incrementing = false;
+    public $primaryKey = 'name';
+
+    public $fillable = [
+        'name', 'category_name', 'price'
+    ];
 
     public function categories()
     {
@@ -16,10 +22,5 @@ class Product extends Model
     public function orders()
     {
         return $this->hasMany('App\Order');
-    }
-
-    public function productsByCategory(Category $category)
-    {
-
     }
 }

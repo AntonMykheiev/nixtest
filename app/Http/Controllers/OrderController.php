@@ -39,14 +39,13 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request);
         $order = new Order();
         $order->category_name = $request->get('category_name');
-        $order->product_id = $request->get('product_id');
+        $order->product_name = $request->get('product_name');
         $order->quantity = $request->get('quantity');
         $order->save();
 
-        return redirect()->route('product.index');
+        return redirect()->route('order.index');
     }
 
     /**

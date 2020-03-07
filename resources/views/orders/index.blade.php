@@ -82,7 +82,7 @@
                     <tr>
                         <td>
                             <h4>{{ $order->category_name }}</h4>
-                            <h5>{{ $order->product_id }}</h5>
+                            <h5>{{ $order->product_name }}</h5>
                             <h6>{{ $order->quantity }}</h6>
                         </td>
                     </tr>

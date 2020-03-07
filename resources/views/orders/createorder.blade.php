@@ -83,7 +83,7 @@
                             result.forEach((element) => {
                                 let opt = document.createElement('option');
                                 opt.appendChild(document.createTextNode(element.name));
-                                opt.value = element.id;
+                                opt.value = element.name;
                                 tag.appendChild(opt);
                             });
                         }
@@ -111,7 +111,7 @@
                             <option> {{ $category->name }}</option>
                             @endforeach
                         </select>
-                        <select name="product_id" id="product" class="form-control input-group-lg">
+                        <select name="product_name" id="product" class="form-control input-group-lg">
                             <option>Select product</option>
                         </select>
                         <input type="text" name="quantity" class="form-control" placeholder="Quantity">
