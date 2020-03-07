@@ -63,6 +63,35 @@
             margin-bottom: 30px;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.dynamic').change(function(){
+                if($(this).val() !== '')
+                {
+                    var value = $(this).val();
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url:"{{ route('getproductsbycategory') }}",
+                        method:"POST",
+                        data:{value:value, _token:_token},
+                        success:function(result)
+                        {
+                            console.dir(result);
+                            let tag = document.querySelector('#product');
+                            tag.innerHTML = '';
+                            result.forEach((element) => {
+                                let opt = document.createElement('option');
+                                opt.appendChild(document.createTextNode(element.name));
+                                opt.value = element.id;
+                                tag.appendChild(opt);
+                            });
+                        }
+                    })
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="flex-center position-ref full-height">
@@ -71,20 +100,21 @@
         <div class="title m-b-md">
             New product
         </div>
-        <form method="post" action="{{ route('product.store') }}">
+        <form method="post" action="{{ route('order.store') }}">
             @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Name:</strong>
-                        <input type="text" name="name" class="form-control" placeholder="Name">
-                        <input type="text" name="price" class="form-control" placeholder="Price">
-                        <select class="form-control input-group-lg"  name="category_name">
+                    <div class="form-group" id="select-form">
+                        <select id="category" class="form-control input-group-lg dynamic"  name="category_name" data-dependent = "product">
                             <option>Select category</option>
                             @foreach($categories as $category)
                             <option> {{ $category->name }}</option>
-                                @endforeach
+                            @endforeach
                         </select>
+                        <select name="product_id" id="product" class="form-control input-group-lg">
+                            <option>Select product</option>
+                        </select>
+                        <input type="text" name="quantity" class="form-control" placeholder="Quantity">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -87,7 +87,8 @@
                 <div class="links">
                     <a href={{ route('category.index') }}>Categories</a>
                     <a href={{ route('product.index') }}>Products</a>
-                    <a href={{ route('product.index') }}>Orders</a>
+                    <a href={{ route('order.index') }}>Orders</a>
+                    <a href={{ route('order.create') }}>New order</a>
                 </div>
             </div>
         </div>

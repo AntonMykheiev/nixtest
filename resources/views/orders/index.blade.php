@@ -65,34 +65,30 @@
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
+<div class="flex-center position-re">
 
     <div class="content">
         <div class="title m-b-md">
-            New product
+            Products
         </div>
-        <form method="post" action="{{ route('product.store') }}">
-            @csrf
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Name:</strong>
-                        <input type="text" name="name" class="form-control" placeholder="Name">
-                        <input type="text" name="price" class="form-control" placeholder="Price">
-                        <select class="form-control input-group-lg"  name="category_name">
-                            <option>Select category</option>
-                            @foreach($categories as $category)
-                            <option> {{ $category->name }}</option>
-                                @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </form>
-
+        <div class="links" style="padding-bottom: 60px ">
+            <a class="btn btn-light" href="{{ route('order.create') }}" role="button">New order</a>
+        </div>
+        <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+                @foreach($orders as $order)
+                    <tr>
+                        <td>
+                            <h4>{{ $order->category_name }}</h4>
+                            <h5>{{ $order->product_id }}</h5>
+                            <h6>{{ $order->quantity }}</h6>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
 </body>

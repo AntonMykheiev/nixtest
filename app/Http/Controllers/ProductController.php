@@ -9,7 +9,10 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductController extends Controller
 {
@@ -102,5 +105,14 @@ class ProductController extends Controller
 
         return redirect()->route('product.index');
 
+    }
+
+    /**
+     * @param Request $request
+     * @return Collection
+     */
+    public function getProductsByCategory(Request $request)
+    {
+        return DB::table('products')->where('category_name', $request->get('value'))->get();
     }
 }

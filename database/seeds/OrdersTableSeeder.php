@@ -19,13 +19,13 @@ class OrdersTableSeeder extends Seeder
 
         DB::table('orders')->insert([
             'category_name' => 'Shoes',
-            'product_id' => '2',
+            'product_id' => '4',
             'quantity' => '2',
         ]);
 
         DB::table('orders')->insert([
             'category_name' => 'Cars',
-            'product_id' => '3',
+            'product_id' => '7',
             'quantity' => '1',
         ]);
     }

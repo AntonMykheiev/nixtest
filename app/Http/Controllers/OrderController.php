@@ -2,40 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Order;
+use App\Product;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function index()
     {
-        echo 'kekek';
+        return view('orders.index', ['orders' => Order::all()]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function create()
     {
-        //
+        return view('orders.createorder', ['categories' => Category::all()]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+//        dd($request);
+        $order = new Order();
+        $order->category_name = $request->get('category_name');
+        $order->product_id = $request->get('product_id');
+        $order->quantity = $request->get('quantity');
+        $order->save();
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -63,7 +74,7 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */

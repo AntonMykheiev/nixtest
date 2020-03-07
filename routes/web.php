@@ -19,3 +19,9 @@ Route::get('/', function () {
 
 Route::resource('category', 'CategoryController');
 Route::resource('product', 'ProductController');
+Route::post('/getproductsbycategory', 'ProductController@getProductsByCategory')->name('getproductsbycategory');
+
+Route::get('/orders', 'OrderController@index')->name('order.index');
+Route::get('/neworder', 'OrderController@create')->name('order.create');
+Route::post('/order', 'OrderController@store')->name('order.store');
+

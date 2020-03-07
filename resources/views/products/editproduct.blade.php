@@ -80,7 +80,7 @@
                         <strong>Name:</strong>
                         <input type="text" name="name" class="form-control" value="{{ $product->name }}">
                         <input type="text" name="price" class="form-control" value="{{ $product->price }}">
-                        <select  name="category_name" >
+                        <select class="form-control input-group-lg"  name="category_name" >
                             <option selected> {{ $product->category_name }}</option>
                         @foreach($categories as $category)
                                 @if($product->category_name !== $category->name)
